@@ -90,9 +90,19 @@
             <a href="#technology">Technology</a>
             <div class="dropdown" style="display: inline-block; position: relative;">
                 <a href="#" id="docBtn" style="cursor: pointer;">Documents ▾</a>
-                <div id="docDropdown" style="display: none; position: absolute; background: #0f172a; min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); top: 100%; left: 2rem; padding: 0.5rem 0; z-index: 2000;">
-                    <a href="#" onclick="openVdrModal()" style="display: block; padding: 0.5rem 1rem; margin: 0; font-size: 0.85rem; color: #fff;">Virtual Data Room</a>
-                </div>
+                <div id="docDropdown" style="display: none; position: absolute; background: #0f172a; min-width: 240px; box-shadow: 0px 8px 16px rgba(0,0,0,0.4); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); top: 100%; left: 0; padding: 0.5rem 0; z-index: 2000; margin-top: 0.5rem;">
+    <!-- Your existing password-protected Data Room folder -->
+    <a href="#" onclick="openVdrModal('vdr')" style="display: block; padding: 0.7rem 1.2rem; margin: 0; font-size: 0.85rem; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);">🔒 Virtual Data Room</a>
+    
+    <!-- Visual Header representing your new nested internal folder -->
+    <div style="padding: 0.7rem 1.2rem 0.3rem 1.2rem; font-size: 0.75rem; text-transform: uppercase; color: var(--primary); font-weight: 700; letter-spacing: 0.5px;">📁 Product Documentation</div>
+    
+    <!-- Document File Link 1 (Nested and indented inside the folder) -->
+    <a href="User-Manual.pdf" target="_blank" style="display: block; padding: 0.5rem 1.2rem 0.5rem 2rem; margin: 0; font-size: 0.85rem; color: #cbd5e1; text-decoration: none; transition: color 0.2s;">📄 Balance Mat for Clinicians</a>
+    
+    <!-- Document File Link 2 (Nested and indented inside the folder) -->
+    <a href="Clinical-Data.pdf" target="_blank" style="display: block; padding: 0.5rem 1.2rem 0.5rem 2rem; margin: 0; font-size: 0.85rem; color: #cbd5e1; text-decoration: none; transition: color 0.2s;">📄 2024 Annual Report PSSII Ltd 14 Feb 2026 draft</a>
+</div>
             </div>
             <a href="#contact">Contact</a>
         </div>
