@@ -451,4 +451,32 @@ counters.forEach(counter => {
             <input type="password" id="vdrPasscode" placeholder="Enter Access Code" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 1rem; font-size: 1rem; text-align: center; color: #0f172a; background: #fff;">
             <button onclick="checkAccess()" class="btn">Enter</button>
 <button onclick="closeVdrModal()" class="btn" style="background:#64748b;">Close</button>
+            <!-- Global Interaction Script -->
+<script>
+document.querySelectorAll('.global-card').forEach(card => {
+    card.addEventListener('click', () => {
+        card.classList.toggle('active');
+    });
+});
+
+const counters = document.querySelectorAll('.count');
+
+counters.forEach(counter => {
+    const update = () => {
+        const target = +counter.getAttribute('data-target');
+        const current = +counter.innerText;
+
+        const increment = Math.ceil(target / 30);
+
+        if (current < target) {
+            counter.innerText = current + increment;
+            setTimeout(update, 40);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    update();
+});
+</script>
             
