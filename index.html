@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +22,7 @@
         .nav-links a { color: var(--light); text-decoration: none; margin-left: 2rem; font-size: 0.9rem; transition: color 0.3s; }
         .nav-links a:hover { color: var(--primary); }
         
-        /* Bulletproof Hover Dropdown CSS (No Javascript Clicks Needed) */
+        /* Dropdown CSS Configuration */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-menu { 
             display: none; 
@@ -39,18 +38,16 @@
             z-index: 2000; 
             margin-top: 0.5rem;
         }
-        /* The Magic Secret: This forces the folder to show instantly when mouse hovers over Documents */
         .dropdown:hover .dropdown-menu { display: block; }
-        
         .dropdown-menu a { display: block; padding: 0.6rem 1.2rem; margin: 0; font-size: 0.85rem; color: #cbd5e1; text-decoration: none; transition: background 0.2s, color 0.2s; cursor: pointer; }
         .dropdown-menu a:hover { background: rgba(0, 113, 227, 0.15); color: #fff; }
 
-        /* Video Hero Section */
-        .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 1rem; overflow: hidden; }
-        .hero-content { position: relative; z-index: 2; max-width: 800px; }
-        .badge { background: rgba(0, 113, 227, 0.2); border: 1px solid var(--primary); color: #60a5fa; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; display: inline-block; margin-bottom: 1.5rem; text-transform: uppercase; font-weight: 600; }
-        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero p { font-size: 1.25rem; color: #cbd5e1; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        /* Video Hero Area with Clean Light Background */
+        .hero { background: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%); position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 1rem; overflow: hidden; }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; color: #0f172a; }
+        .badge { background: rgba(0, 113, 227, 0.1); border: 1px solid var(--primary); color: var(--primary); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; display: inline-block; margin-bottom: 1.5rem; text-transform: uppercase; font-weight: 600; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: #0f172a; }
+        .hero p { font-size: 1.25rem; color: #475569; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
         .btn { background: var(--primary); color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; transition: transform 0.2s, background 0.2s; border: none; cursor: pointer; }
         .btn:hover { background: #0077ed; transform: translateY(-2px); }
 
@@ -91,7 +88,7 @@
         .card p { color: var(--gray); line-height: 1.5; font-size: 0.95rem; }
 
         /* Contact Section */
-        .footer { padding: 4rem 5%; background: var(--dark); text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer { padding: 5rem 5%; background: var(--dark); text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
         .footer p { color: var(--gray); font-size: 0.9rem; margin-top: 2rem; }
 
         @media (max-width: 768px) {
@@ -106,39 +103,29 @@
 
     <!-- Navigation Bar -->
     <nav>
-      <a href="#" style="display: flex; align-items: center; text-decoration: none;">
-    <img src="logo.png" alt="Balance Mat Logo" style="height: 150px; width: auto; object-fit: contain;">
-</a>
+        <a href="#" style="display: flex; align-items: center; text-decoration: none;">
+            <img src="logo.png" alt="Balance Mat Logo" style="height: 150px; width: auto; object-fit: contain;">
+        </a>
         <div class="nav-links">
             <a href="#solutions">Solutions</a>
             <a href="#technology">Technology</a>
-            <a href="#Global">Global</a>
-            <a href="#Research">Research</a>
-            <a href="#Technical">Technical</a>
+            <a href="#global">Global</a>
+            <a href="#research">Research</a>
+            <a href="#technical">Technical</a>
             
-            <!-- Robust Hover Dropdown Menu Component Folder -->
             <div class="dropdown">
                 <a href="#" style="cursor: pointer;">Data Room ▾</a>
                 <div class="dropdown-menu">
-                    <!-- Secure Gate Link -->
-                    <a onclick="openVdrModal('vdr')" style="border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 600; color: #fff;">🔒 Virtual Data Room</a>
-                    
-                    <!-- Internal Nested Folder Label Header -->
-                    <div style="padding: 0.6rem 1.2rem 0.2rem 1.2rem; font-size: 0.7rem; text-transform: uppercase; color: var(--primary); font-weight: 700; letter-spacing: 0.5px;">📁 Virtual Documentation</div>
-                    
-                    <!-- Indented Files pointing inside the internal folder -->
-                    <a href="2024 Annual Report PSII Ltd 14 Feb 2026 draft.docx" target="_blank" style="padding-left: 2rem;">📄 2024 Annual Report PSII Ltd 14 Feb 2026 draft</a>
-                    <a href="Balance Mat for Clinicians.docx" target="_blank" style="padding-left: 2rem;">📄 Balance Mat for Clinicians</a>
+                    <a onclick="openVdrModal()" style="font-weight: 600; color: #fff;">🔒 Virtual Data Room</a>
                 </div>
             </div>
-            
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <!-- Visual Hero Area -->
     <section class="hero">
-        <video autoplay muted loop playsinline style="position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); object-fit: cover; z-index: 1; opacity: 0.35;">
+        <video autoplay muted loop playsinline style="position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); object-fit: cover; z-index: 1; opacity: 0.08;">
             <source src="Promo video.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
@@ -163,15 +150,15 @@
         <div class="display-box">
             <div class="display-text" id="tab-content-text">
                 <h3>Automated Falls Risk Classification</h3>
-                <p>Protect vulnerable residents by replacing subjective observational screening with zero-bias optical sensors. Test physical decline instantly.</p>
+                <p>Protect vulnerable residents by replacing subjective observational screening with zero-bias optical sensors. Instantly identify physical frailty changes.</p>
                 <ul>
-                    <li>20-Second non-invasive testing</li>
+                    <li>30-Second non-invasive testing</li>
                     <li>Pre-emptive fall risk targeting</li>
                     <li>Historical data tracking for individual care plans</li>
                 </ul>
             </div>
             <div class="display-graphic">
-                <div class="graphic-label" id="graph-label">Live Telemetry: Resilient Mode</div>
+                <div class="graphic-label" id="graph-label">Telemetry: Low Sway Amplitude (Normal)</div>
                 <div class="wave-line" id="wave"></div>
             </div>
         </div>
@@ -199,36 +186,70 @@
         </div>
     </section>
 
-        <!-- Interactive Contact Footer with Company Details -->
-    <footer id="contact" class="footer" style="padding: 5rem 5%; background: var(--dark); text-align: center; border-top: 1px solid rgba(255,255,255,0.1);">
+    <!-- Academic & Clinical Research Section -->
+    <section id="research" class="interactive-section" style="background: #ffffff; border-top: 1px solid #e2e8f0;">
+        <h2 class="section-title">Clinical Research & Validation</h2>
+        <p class="section-subtitle">Explore peer-reviewed studies and balance assessment whitepapers utilizing the Balance Mat system.</p>
+        <div style="max-width: 800px; margin: 0 auto; text-align: left; color: var(--gray);">
+            <p>Our research library includes clinical evaluations focusing on postural sway analysis, sports concussion baselines, and falls prevention metrics across major Australian medical institutions.</p>
+        </div>
+    </section>
+
+    <!-- Global Footprint Section -->
+    <section id="global" class="tech-section" style="background: #f8fafc;">
+        <div style="text-align:center; margin-bottom: 2rem;">
+            <h2 class="section-title">Global Reach</h2>
+            <p class="section-subtitle">Bringing next-generation fiber-optic health solutions to international clinical standards.</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; color: #475569;">
+            <p>From our headquarters in Australia, Balance Mat technology is scaling internationally to service aged care facilities, sports leagues, and allied health grids worldwide.</p>
+        </div>
+    </section>
+
+    <!-- Technical Section Anchor Panel -->
+    <section id="technical" class="interactive-section" style="background: #ffffff; border-top: 1px solid #e2e8f0;">
+        <h2 class="section-title">Technical Integration Architecture</h2>
+        <p class="section-subtitle">High-fidelity engineering engineered for clinical diagnostics integration.</p>
+        <div style="max-width: 800px; margin: 0 auto; text-align: left; color: var(--gray);">
+            <p>The Balance Mat system leverages a network array of multi-mode raw fiber optic strands. By tracking microscopic pressure variations from shifts in bodily balance, our platform compiles dynamic datasets optimized for medical-grade reporting pipelines.</p>
+        </div>
+    </section>
+
+    <!-- Interactive Contact Footer with Company Details -->
+    <footer id="contact" class="footer">
         <h2 class="section-title" style="color:white; margin-bottom:1rem;">Upgrade Your Metrics</h2>
         <p class="section-subtitle" style="color:#cbd5e1; margin-bottom:3rem;">Ready to transition from your old workflow? Request a professional demonstration package.</p>
         
-        <!-- Corporate Details Grid Block -->
         <div style="max-width: 800px; margin: 0 auto 3rem auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 3rem;">
-            <!-- Address Unit -->
             <div>
                 <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📍</div>
                 <h5 style="color: white; font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600;">Head Office Address</h5>
                 <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.4;">Insert Suite Number, Street Address<br>Sydney, NSW 2000, Australia</p>
             </div>
-            <!-- Phone & Email Unit -->
             <div>
                 <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📞</div>
                 <h5 style="color: white; font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600;">Direct Contact</h5>
                 <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.4;">
-                    Phone: <a href="tel:+61457123852" style="color: #cbd5e1; text-decoration: none;">+61 (0)4 5712 3852</a><br>
-                    Email: <a href="mailto:Ian.Bergman@balancemat.com.au" style="color: var(--primary); text-decoration: none; font-weight: 600;">Ian.Bergman@balancemat.com.au</a>
+                    Phone: <a href="tel:+61200000000" style="color: #cbd5e1; text-decoration: none;">+61 (0)2 0000 0000</a><br>
+                    Email: <a href="mailto:info@balancemat.com.au" style="color: var(--primary); text-decoration: none; font-weight: 600;">info@balancemat.com.au</a>
                 </p>
             </div>
-            <!-- Corporate Registry Unit -->
             <div>
                 <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💼</div>
                 <h5 style="color: white; font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600;">Corporate Registration</h5>
-                <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.4;">Balance Mat Pty Ltd<br>ABN: 91 142 134 012<br>TGA ARTG ID: XXXXXX</p>
+                <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.4;">Balance Mat Pty Ltd<br>ABN: XX XXX XXX XXX<br>TGA ARTG ID: XXXXXX</p>
             </div>
         </div>
 
-        <a href="mailto:Ian.Bergman@balancemat.com.au" class="btn">Email Corporate Office</a>
+        <a href="mailto:info@balancemat.com.au" class="btn">Email Corporate Office</a>
         <p style="margin-top: 3rem; color: var(--gray); font-size: 0.85rem;">&copy; 2026 Balance Mat Pty Ltd. All Rights Reserved. Patented System.</p>
     </footer>
+
+    <!-- Secure Virtual Data Room Access Popup Modal Box -->
+    <div id="vdrModal" style="display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(15,23,42,0.85); backdrop-filter: blur(5px); justify-content: center; align-items: center;">
+        <div style="background: white; color: #0f172a; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 450px; text-align: center; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Secure Corporate Directory</h3>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">All Balance Mat user manuals, validation data, and corporate files are restricted. Enter your access code to view files.</p>
+            
+            <input type="password" id="vdrPasscode" placeholder="Enter Access Code" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 1rem; font-size: 1rem; text-align: center; color: #0f172a; background: #fff;">
+            
