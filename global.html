@@ -2,75 +2,232 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Global Presence</title>
+<title>Global Intelligence Dashboard</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial;
-    background: #0f172a;
+    font-family: -apple-system, sans-serif;
     overflow: hidden;
 }
 
-/* Map background */
-.map {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    background: url("https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg") center/cover no-repeat;
-background-size: cover;
-}
-
-/* glowing dots */
-.dot {
+/* layout */
+#map {
     position: absolute;
-    width: 14px;
-    height: 14px;
-    background: #00aaff;
-    border-radius: 50%;
-    box-shadow: 0 0 15px #00aaff;
-    cursor: pointer;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.6); opacity: 0.6; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* side panel */
-.panel {
-    position: fixed;
-    right: -380px;
     top: 0;
-    width: 380px;
-    height: 100%;
-    background: #111827;
-    color: white;
-    padding: 20px;
-    transition: 0.3s;
+    left: 0;
+    width: 70%;
+    height: 100vh;
 }
 
-.panel.active {
+#panel {
+    position: absolute;
     right: 0;
+    top: 0;
+    width: 30%;
+    height: 100vh;
+    background: #0f172a;
+    color: white;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+/* header */
+h1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #60a5fa;
+}
+
+/* card */
+.card {
+    background: #111827;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: #2563eb;
+}
+
+.small {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* stats */
+.stat {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 10px;
+    background: #111827;
+    border-radius: 8px;
 }
 </style>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
 
-<div id="map" style="width:100vw;height:100vh;"></div>
+<div id="map"></div>
 
-<div class="panel" id="panel">
-    <h2 id="title"></h2>
-    <p id="type"></p>
-    <p id="focus"></p>
+<div id="panel">
+    <h1>🌍 Global Intelligence Dashboard</h1>
+
+    <div class="stat">
+        <span>Active Sites</span>
+        <b>7</b>
+    </div>
+
+    <div class="stat">
+        <span>Countries</span>
+        <b>7</b>
+    </div>
+
+    <div class="stat">
+        <span>Research Partners</span>
+        <b>3</b>
+    </div>
+
+    <hr style="border:0;border-top:1px solid #1f2937;margin:15px 0;">
+
+    <div id="list"></div>
 </div>
 
-<script src="global.js"></script>
+<script>
+const map = L.map('map').setView([20, 0], 2);
+
+// Clean light investor map
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: ''
+}).addTo(map);
+
+// DATA (your real clients)
+const locations = [
+{
+    name: "LSU Health",
+    country: "USA",
+    lat: 29.9511,
+    lng: -90.0715,
+    type: "Academic Health Centre",
+    focus: "Clinical research & education"
+},
+{
+    name: "StandSure Physiotherapy",
+    country: "UK",
+    lat: 51.5074,
+    lng: -0.1278,
+    type: "Physiotherapy Clinic",
+    focus: "Rehabilitation & mobility care"
+},
+{
+    name: "King Abdulaziz Medical City",
+    country: "Saudi Arabia",
+    lat: 21.4858,
+    lng: 39.1925,
+    type: "Hospital",
+    focus: "Specialist care & research"
+},
+{
+    name: "SERI Singapore",
+    country: "Singapore",
+    lat: 1.2966,
+    lng: 103.7764,
+    type: "Research Institute",
+    focus: "Vision science & ophthalmology"
+},
+{
+    name: "Hallmark Physiotherapy",
+    country: "Singapore",
+    lat: 1.3521,
+    lng: 103.8198,
+    type: "Physio Clinic",
+    focus: "Sports rehabilitation"
+},
+{
+    name: "Muscle Mastery PNG",
+    country: "PNG",
+    lat: -9.4438,
+    lng: 147.1803,
+    type: "Physio Clinic",
+    focus: "Pain management & recovery"
+},
+{
+    name: "Hutt Hospital ED",
+    country: "New Zealand",
+    lat: -41.2090,
+    lng: 174.9080,
+    type: "Emergency Department",
+    focus: "Acute emergency care"
+}
+];
+
+// SIDE LIST PANEL
+const list = document.getElementById("list");
+
+// MARKERS
+locations.forEach(loc => {
+
+    // map marker
+    const marker = L.marker([loc.lat, loc.lng]).addTo(map);
+
+    marker.on('click', () => {
+        showPanel(loc);
+    });
+
+    // side panel cards
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+        <b>${loc.name}</b><br>
+        <span class="small">${loc.type}</span><br>
+        <span class="small">${loc.country}</span>
+    `;
+
+    card.onclick = () => {
+        map.setView([loc.lat, loc.lng], 5);
+        showPanel(loc);
+    };
+
+    list.appendChild(card);
+});
+
+// PANEL VIEW
+function showPanel(loc) {
+    document.getElementById("panel").innerHTML = `
+        <h1>${loc.name}</h1>
+
+        <div class="stat">
+            <span>Type</span>
+            <b>${loc.type}</b>
+        </div>
+
+        <div class="stat">
+            <span>Country</span>
+            <b>${loc.country}</b>
+        </div>
+
+        <div class="stat">
+            <span>Focus</span>
+            <b>${loc.focus}</b>
+        </div>
+
+        <hr style="border:0;border-top:1px solid #1f2937;margin:15px 0;">
+
+        <p style="color:#94a3b8;font-size:13px;">
+            Global Balance Mat deployment node with active clinical integration and data monitoring capability.
+        </p>
+    `;
+}
+</script>
 
 </body>
 </html>
