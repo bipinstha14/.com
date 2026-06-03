@@ -99,6 +99,28 @@
         }
     </style>
 </head>
+    <script>
+    function openVdrModal() {
+        document.getElementById("vdrModal").style.display = "flex";
+    }
+
+    function closeVdrModal() {
+        document.getElementById("vdrModal").style.display = "none";
+    }
+
+    function checkAccess() {
+        const code = document.getElementById("vdrPasscode").value;
+
+        // simple demo password (change this later)
+        if (code === "1234") {
+            alert("Access granted ✔");
+            closeVdrModal();
+            // here you can redirect or show files
+        } else {
+            alert("Wrong access code ❌");
+        }
+    }
+</script>
 <body>
 
     <!-- Navigation Bar -->
