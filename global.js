@@ -1,84 +1,28 @@
+var map = L.map('map').setView([20, 0], 2);
+
+// Light world map (NOT dark)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: ''
+}).addTo(map);
+
+// Your locations with REAL coordinates
 const locations = [
-{
-    name: "LSU Health",
-    country: "USA",
-    location: "New Orleans, USA",
-    type: "Academic health centre / medical institution",
-    focus: "Healthcare education, clinical research, and medical services",
-    x: "28%",
-    y: "45%"
-},
-{
-    name: "StandSure Physiotherapy",
-    country: "UK",
-    location: "United Kingdom",
-    type: "Physiotherapy clinic",
-    focus: "Musculoskeletal treatment, rehabilitation, and mobility care",
-    x: "48%",
-    y: "30%"
-},
-{
-    name: "King Abdulaziz Medical City",
-    country: "Saudi Arabia",
-    location: "Jeddah, Saudi Arabia",
-    type: "Major hospital / medical city",
-    focus: "Advanced hospital care, specialist treatments, and research",
-    x: "55%",
-    y: "48%"
-},
-{
-    name: "Singapore Eye Research Institute (SERI)",
-    country: "Singapore",
-    location: "Singapore",
-    type: "Eye research institute",
-    focus: "Ophthalmology research, vision science, and clinical studies",
-    x: "72%",
-    y: "55%"
-},
-{
-    name: "Hallmark Physiotherapy",
-    country: "Singapore",
-    location: "Singapore",
-    type: "Physiotherapy clinic",
-    focus: "Rehabilitation, sports injury treatment, and physical therapy",
-    x: "72%",
-    y: "58%"
-},
-{
-    name: "Muscle Mastery Physiotherapy",
-    country: "PNG",
-    location: "Port Moresby, Papua New Guinea",
-    type: "Physiotherapy & massage clinic",
-    focus: "Pain management, recovery, and physical rehabilitation",
-    x: "78%",
-    y: "70%"
-},
-{
-    name: "Hutt Hospital Emergency Department",
-    country: "NZ",
-    location: "Lower Hutt, New Zealand",
-    type: "Public hospital emergency department",
-    focus: "Emergency care, acute medical treatment, urgent response",
-    x: "85%",
-    y: "75%"
-}
+    { name: "LSU Health", lat: 29.9511, lng: -90.0715, type: "Academic Health Centre", focus: "Clinical research & education" },
+    { name: "StandSure Physiotherapy", lat: 51.5074, lng: -0.1278, type: "Physiotherapy clinic", focus: "Rehabilitation & mobility care" },
+    { name: "King Abdulaziz Medical City", lat: 21.4858, lng: 39.1925, type: "Major hospital", focus: "Specialist care & research" },
+    { name: "SERI Singapore", lat: 1.2966, lng: 103.7764, type: "Research institute", focus: "Eye science & vision research" },
+    { name: "Hallmark Physiotherapy", lat: 1.3521, lng: 103.8198, type: "Physio clinic", focus: "Sports rehab" },
+    { name: "Muscle Mastery PNG", lat: -9.4438, lng: 147.1803, type: "Physio clinic", focus: "Recovery & pain management" },
+    { name: "Hutt Hospital NZ", lat: -41.2090, lng: 174.9080, type: "Emergency hospital", focus: "Urgent care" }
 ];
-const map = document.getElementById("map");
 
-locations.forEach((item) => {
-    const dot = document.createElement("div");
-    dot.classList.add("dot");
+// Add markers
+locations.forEach(loc => {
+    let marker = L.marker([loc.lat, loc.lng]).addTo(map);
 
-    dot.style.left = item.x;
-    dot.style.top = item.y;
-
-    dot.addEventListener("click", () => {
-        document.getElementById("title").innerText = item.name;
-        document.getElementById("type").innerText = item.type;
-        document.getElementById("focus").innerText = item.focus;
-
-        document.getElementById("panel").classList.add("active");
-    });
-
-    map.appendChild(dot);
+    marker.bindPopup(`
+        <b>${loc.name}</b><br>
+        ${loc.type}<br>
+        ${loc.focus}
+    `);
 });
