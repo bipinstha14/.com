@@ -14,20 +14,20 @@ body {
     overflow: hidden;
 }
 
-/* MAP */
+/* MAP (full screen base) */
 #map {
     position: absolute;
     top: 0;
     left: 0;
-    width: 65%;
+    width: 100%;
     height: 100vh;
 }
 
-/* PANEL */
+/* PANEL (hidden by default) */
 #panel {
     position: absolute;
-    right: 0;
     top: 0;
+    right: -40%;
     width: 35%;
     height: 100vh;
     background: #0f172a;
@@ -35,6 +35,13 @@ body {
     padding: 30px;
     overflow-y: auto;
     box-sizing: border-box;
+    transition: 0.3s ease;
+    z-index: 999;
+}
+
+/* PANEL ACTIVE */
+#panel.active {
+    right: 0;
 }
 
 /* header */
@@ -90,34 +97,13 @@ h1 {
 
 <div id="map"></div>
 
-<div id="panel">
-    <h1>🌍 Global Intelligence Dashboard</h1>
-
-    <div class="stat">
-        <span>Active Sites</span>
-        <b>7</b>
-    </div>
-
-    <div class="stat">
-        <span>Countries</span>
-        <b>7</b>
-    </div>
-
-    <div class="stat">
-        <span>Research Partners</span>
-        <b>3</b>
-    </div>
-
-    <hr style="border:0;border-top:1px solid #1f2937;margin:15px 0;">
-
-    <div id="list"></div>
-</div>
+<div id="panel"></div>
 
 <script>
+
 // MAP INIT
 const map = L.map('map').setView([20, 0], 2);
 
-// CLEAN MAP STYLE
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: ''
 }).addTo(map);
@@ -182,36 +168,25 @@ const locations = [
 }
 ];
 
-const list = document.getElementById("list");
+const panel = document.getElementById("panel");
 
-// MARKERS + SIDEBAR LIST
-locations.forEach(loc => {
-
-    const marker = L.marker([loc.lat, loc.lng]).addTo(map);
-
-    marker.on('click', () => showPanel(loc));
-
-    const card = document.createElement("div");
-    card.className = "card";
-
-    card.innerHTML = `
-        <b>${loc.name}</b><br>
-        <span class="small">${loc.type}</span><br>
-        <span class="small">${loc.country}</span>
-    `;
-
-    card.onclick = () => {
-        map.setView([loc.lat, loc.lng], 5);
-        showPanel(loc);
-    };
-
-    list.appendChild(card);
-});
-
-// PANEL VIEW
+// OPEN PANEL
 function showPanel(loc) {
-    document.getElementById("panel").innerHTML = `
-        <h1>${loc.name}</h1>
+
+    panel.classList.add("active");
+
+    panel.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+            <h1>${loc.name}</h1>
+            <button onclick="closePanel()" style="
+                background:#ef4444;
+                border:none;
+                color:white;
+                padding:6px 10px;
+                border-radius:6px;
+                cursor:pointer;
+            ">✕</button>
+        </div>
 
         <div class="stat">
             <span>Type</span>
@@ -231,10 +206,23 @@ function showPanel(loc) {
         <hr style="border:0;border-top:1px solid #1f2937;margin:15px 0;">
 
         <p style="color:#94a3b8;font-size:13px;line-height:1.5;">
-            Global Balance Mat deployment node with active clinical integration and real-time monitoring capability.
+            Global Balance Mat deployment node with real-time clinical integration and monitoring capability.
         </p>
     `;
 }
+
+// CLOSE PANEL
+function closePanel() {
+    panel.classList.remove("active");
+}
+
+// MARKERS
+locations.forEach(loc => {
+    const marker = L.marker([loc.lat, loc.lng]).addTo(map);
+
+    marker.on('click', () => showPanel(loc));
+});
+
 </script>
 
 </body>
