@@ -14,25 +14,27 @@ body {
     overflow: hidden;
 }
 
-/* layout */
+/* MAP */
 #map {
     position: absolute;
     top: 0;
     left: 0;
-    width: 70%;
+    width: 65%;
     height: 100vh;
 }
 
+/* PANEL */
 #panel {
     position: absolute;
     right: 0;
     top: 0;
-    width: 30%;
+    width: 35%;
     height: 100vh;
     background: #0f172a;
     color: white;
-    padding: 25px;
+    padding: 30px;
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 /* header */
@@ -42,7 +44,17 @@ h1 {
     color: #60a5fa;
 }
 
-/* card */
+/* stats */
+.stat {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 10px;
+    background: #111827;
+    border-radius: 8px;
+}
+
+/* cards */
 .card {
     background: #111827;
     padding: 15px;
@@ -63,14 +75,13 @@ h1 {
     color: #94a3b8;
 }
 
-/* stats */
-.stat {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    padding: 10px;
-    background: #111827;
-    border-radius: 8px;
+/* scrollbar */
+#panel::-webkit-scrollbar {
+    width: 6px;
+}
+#panel::-webkit-scrollbar-thumb {
+    background: #2563eb;
+    border-radius: 10px;
 }
 </style>
 </head>
@@ -103,14 +114,15 @@ h1 {
 </div>
 
 <script>
+// MAP INIT
 const map = L.map('map').setView([20, 0], 2);
 
-// Clean light investor map
+// CLEAN MAP STYLE
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: ''
 }).addTo(map);
 
-// DATA (your real clients)
+// DATA
 const locations = [
 {
     name: "LSU Health",
@@ -170,22 +182,18 @@ const locations = [
 }
 ];
 
-// SIDE LIST PANEL
 const list = document.getElementById("list");
 
-// MARKERS
+// MARKERS + SIDEBAR LIST
 locations.forEach(loc => {
 
-    // map marker
     const marker = L.marker([loc.lat, loc.lng]).addTo(map);
 
-    marker.on('click', () => {
-        showPanel(loc);
-    });
+    marker.on('click', () => showPanel(loc));
 
-    // side panel cards
     const card = document.createElement("div");
     card.className = "card";
+
     card.innerHTML = `
         <b>${loc.name}</b><br>
         <span class="small">${loc.type}</span><br>
@@ -222,8 +230,8 @@ function showPanel(loc) {
 
         <hr style="border:0;border-top:1px solid #1f2937;margin:15px 0;">
 
-        <p style="color:#94a3b8;font-size:13px;">
-            Global Balance Mat deployment node with active clinical integration and data monitoring capability.
+        <p style="color:#94a3b8;font-size:13px;line-height:1.5;">
+            Global Balance Mat deployment node with active clinical integration and real-time monitoring capability.
         </p>
     `;
 }
