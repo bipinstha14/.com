@@ -215,16 +215,194 @@ function checkAccess() {
     </section>
 
     <!-- Global Footprint Section -->
-    <section id="global" class="tech-section" style="background: #f8fafc;">
-        <div style="text-align:center; margin-bottom: 2rem;">
-            <h2 class="section-title">Global Reach</h2>
-            <p class="section-subtitle">Bringing next-generation fiber-optic health solutions to international clinical standards.</p>
-        </div>
-        <div style="max-width: 800px; margin: 0 auto; text-align: center; color: #475569;">
-            <p>From our headquarters in Australia, Balance Mat technology is scaling internationally to service aged care facilities, sports leagues, and allied health grids worldwide.</p>
-        </div>
-    </section>
+    <section id="global" style="padding: 5rem 5%; background: #f8fafc;">
 
+    <!-- TITLE -->
+    <div style="text-align:center; margin-bottom: 3rem;">
+        <h2 style="font-size: 2.5rem; font-weight: 800; color:#0f172a;">
+            Global Clinical Network
+        </h2>
+        <p style="color:#64748b; font-size:1.1rem; max-width:750px; margin: 0 auto;">
+            Balance Mat is actively deployed across leading hospitals, universities, and physiotherapy clinics worldwide.
+        </p>
+    </div>
+
+    <!-- LIVE STATS -->
+    <div style="
+        display:flex;
+        justify-content:center;
+        gap:2rem;
+        flex-wrap:wrap;
+        margin-bottom:3rem;
+        text-align:center;
+    ">
+
+        <div>
+            <h3 class="count" data-target="7" style="font-size:2rem; color:#0071e3;">0</h3>
+            <p style="color:#64748b;">Countries</p>
+        </div>
+
+        <div>
+            <h3 class="count" data-target="7" style="font-size:2rem; color:#0071e3;">0</h3>
+            <p style="color:#64748b;">Clinical Partners</p>
+        </div>
+
+        <div>
+            <h3 class="count" data-target="3" style="font-size:2rem; color:#0071e3;">0</h3>
+            <p style="color:#64748b;">Research Institutions</p>
+        </div>
+
+    </div>
+
+    <!-- GRID -->
+    <div id="globalGrid" style="
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    ">
+
+        <!-- CARD -->
+        <div class="global-card">
+            <h3>🇺🇸 LSU Health</h3>
+            <div class="details">
+                <p><b>Location:</b> New Orleans, USA</p>
+                <p><b>Type:</b> Academic health centre</p>
+                <p><b>Focus:</b> Clinical research & medical education</p>
+            </div>
+        </div>
+
+        <div class="global-card">
+            <h3>🇬🇧 StandSure Physiotherapy</h3>
+            <div class="details">
+                <p><b>Location:</b> United Kingdom</p>
+                <p><b>Type:</b> Physiotherapy clinic</p>
+                <p><b>Focus:</b> Rehabilitation & mobility care</p>
+            </div>
+        </div>
+
+        <div class="global-card">
+            <h3>🇸🇦 King Abdulaziz Medical City</h3>
+            <div class="details">
+                <p><b>Location:</b> Jeddah, Saudi Arabia</p>
+                <p><b>Type:</b> Major hospital</p>
+                <p><b>Focus:</b> Specialist care & research</p>
+            </div>
+        </div>
+
+        <div class="global-card">
+            <h3>🇸🇬 SERI</h3>
+            <div class="details">
+                <p><b>Location:</b> Singapore</p>
+                <p><b>Type:</b> Research institute</p>
+                <p><b>Focus:</b> Vision science & ophthalmology</p>
+            </div>
+        </div>
+
+        <div class="global-card">
+            <h3>🇸🇬 Hallmark Physiotherapy</h3>
+            <div class="details">
+                <p><b>Location:</b> Singapore</p>
+                <p><b>Type:</b> Physiotherapy clinic</p>
+                <p><b>Focus:</b> Sports injury & rehab</p>
+            </div>
+        </div>
+
+        <div class="global-card">
+            <h3>🇵🇬 Muscle Mastery</h3>
+            <div class="details">
+                <p><b>Location:</b> Papua New Guinea</p>
+                <p><b>Type:</b> Physio & massage clinic</p>
+                <p><b>Focus:</b> Pain management & recovery</p>
+            </div>
+        </div>
+
+        <div class="global-card">
+            <h3>🇳🇿 Hutt Hospital ED</h3>
+            <div class="details">
+                <p><b>Location:</b> New Zealand</p>
+                <p><b>Type:</b> Emergency department</p>
+                <p><b>Focus:</b> Acute care & emergency response</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STYLES -->
+<style>
+.global-card{
+    background:white;
+    padding:18px;
+    border-radius:14px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.06);
+    cursor:pointer;
+    transition:0.3s;
+    overflow:hidden;
+}
+
+.global-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.12);
+}
+
+.global-card h3{
+    margin-bottom:10px;
+    color:#0f172a;
+}
+
+.details{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease;
+    color:#475569;
+    font-size:0.95rem;
+}
+
+.global-card.active .details{
+    max-height:200px;
+    margin-top:10px;
+}
+
+/* counters */
+.count{
+    font-weight:800;
+}
+</style>
+
+<!-- SCRIPT -->
+<script>
+/* Expand/Collapse Cards */
+document.querySelectorAll('.global-card').forEach(card => {
+    card.addEventListener('click', () => {
+        card.classList.toggle('active');
+    });
+});
+
+/* Animated Counters */
+const counters = document.querySelectorAll('.count');
+
+counters.forEach(counter => {
+    const update = () => {
+        const target = +counter.getAttribute('data-target');
+        const current = +counter.innerText;
+
+        const increment = Math.ceil(target / 30);
+
+        if (current < target) {
+            counter.innerText = current + increment;
+            setTimeout(update, 40);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    update();
+});
+</script>
+    
     <!-- Technical Section Anchor Panel -->
     <section id="technical" class="interactive-section" style="background: #ffffff; border-top: 1px solid #e2e8f0;">
         <h2 class="section-title">Technical Integration Architecture</h2>
