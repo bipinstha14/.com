@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Global Presence</title>
 
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f172a;
+    overflow: hidden;
+}
+
+/* Map background */
+.map {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: url("world-map.png") center/cover no-repeat;
+}
+
+/* glowing dots */
+.dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #00aaff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00aaff;
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.6); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* side panel */
+.panel {
+    position: fixed;
+    right: -380px;
+    top: 0;
+    width: 380px;
+    height: 100%;
+    background: #111827;
+    color: white;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.panel.active {
+    right: 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="map" id="map"></div>
+
+<div class="panel" id="panel">
+    <h2 id="title"></h2>
+    <p id="type"></p>
+    <p id="focus"></p>
+</div>
+
+<script src="global.js"></script>
+
+</body>
+</html>
