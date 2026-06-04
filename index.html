@@ -132,12 +132,17 @@ function checkAccess() {
             <a href="#research">Research</a>
             <a href="#technical">Technical</a>
             
-            <div class="dropdown">
-                <a href="#" style="cursor: pointer;">Data Room ▾</a>
-                <div class="dropdown-menu">
-                    <a href="#" onclick="openVdrModal(); return false;">🔒 Virtual Data Room</a>
-                </div>
-            </div>
+           <div class="dropdown">
+    <a href="#" onclick="toggleDropdown(event)" style="cursor: pointer;">
+        Data Room ▾
+    </a>
+
+    <div class="dropdown-menu" id="dropdownMenu">
+        <a href="#" onclick="openVdrModal(); return false;">
+            🔒 Virtual Data Room
+        </a>
+    </div>
+</div>
             <a href="#contact">Contact</a>
         </div>
     </nav>
