@@ -121,7 +121,33 @@
             .tab-container { flex-wrap: wrap; }
             .nav-links { display: none; }
         }
-    </style>
+    
+/* ===== Mobile menu ===== */
+.hamburger {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    width: 32px; height: 32px; background: none; border: none; cursor: pointer;
+    padding: 0; z-index: 1200;
+}
+.hamburger span { width: 100%; height: 2px; background: #fff; display: block; border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links.open {
+        display: flex !important; flex-direction: column; align-items: flex-start;
+        position: fixed; top: 0; right: 0; height: 100vh; width: 78%; max-width: 320px;
+        background: rgba(15,23,42,0.98); backdrop-filter: blur(10px);
+        padding: 6rem 2rem 2rem; gap: 0.4rem; overflow-y: auto;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.4);
+    }
+    .nav-links.open a { margin-left: 0; margin-top: 0.5rem; font-size: 1rem; width: 100%; }
+    .nav-links.open .dropdown { margin-left: 0; width: 100%; }
+    .nav-links.open .dropdown-menu { position: static; box-shadow: none; margin-top: 0.3rem; width: 100%; display: none; }
+    .nav-links.open .dropdown-menu.open { display: block; }
+}
+</style>
 </head>
     <script>
 function openVdrModal() {
@@ -143,6 +169,14 @@ function checkAccess() {
 }
 
 /* Dropdown toggle - click-based (works on mobile, not just hover). Supports multiple dropdowns. */
+function toggleMobileMenu() {
+    const nav = document.getElementById("navLinks");
+    const btn = document.querySelector(".hamburger");
+    nav.classList.toggle("open");
+    btn.classList.toggle("open");
+    btn.setAttribute("aria-expanded", nav.classList.contains("open"));
+}
+
 function toggleDropdown(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -221,7 +255,10 @@ function switchTab(tab, evt) {
         <div class="logo-tagline">LIVE WELL LONGER</div>
     </div>
 </a>
-        <div class="nav-links">
+        <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="#home">Home</a>
 
             <div class="dropdown">
@@ -277,8 +314,8 @@ function switchTab(tab, evt) {
 
         <div class="partner-callout">
             <div class="callout-tag">Partnership Opportunity</div>
-            <p>We are seeking commercial partners to help us commercialise our Balance Mat as a screening tool for type 2 diabetes.</p>
-            <a href="#Medical">More Info →</a>
+            <p>We are seeking commercial partners to help us commercialise our Balance Mat as a screening tool for type 2 diabetics.</p>
+            <a href="#contact">Get in touch →</a>
         </div>
     </section>
 
