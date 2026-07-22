@@ -46,7 +46,16 @@
         .dropdown-menu a.current { color: var(--primary); font-weight: 600; }
 
         /* Hero */
-        .hero { background: linear-gradient(180deg, #ffffff 0%, #eef4fb 100%); padding: 10rem 5% 5rem; text-align: center; }
+        .announce-bar {
+            background: #eef4fb; border-bottom: 1px solid rgba(0,113,227,0.18);
+            padding: 6rem 5% 1.1rem; display: flex; align-items: center; justify-content: center;
+            gap: 1.25rem; flex-wrap: wrap; text-align: center;
+        }
+        .announce-bar p { color: #1e3a5f; font-size: 0.92rem; max-width: 780px; margin: 0; line-height: 1.5; }
+        .announce-bar a { color: var(--primary); font-weight: 700; text-decoration: none; white-space: nowrap; font-size: 0.92rem; }
+        .announce-bar a:hover { text-decoration: underline; }
+
+        .hero { background: linear-gradient(180deg, #ffffff 0%, #eef4fb 100%); padding: 3rem 5% 4rem; text-align: center; }
         .badge { background: rgba(0, 113, 227, 0.1); border: 1px solid var(--primary); color: var(--primary); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; display: inline-block; margin-bottom: 1.5rem; text-transform: uppercase; font-weight: 600; }
         .hero h1 { font-size: 2.75rem; font-weight: 800; line-height: 1.15; margin-bottom: 1.25rem; max-width: 850px; margin-left: auto; margin-right: auto; }
         .hero p { font-size: 1.15rem; color: #475569; margin-bottom: 2rem; max-width: 650px; margin-left: auto; margin-right: auto; }
@@ -207,6 +216,12 @@
         </div>
     </nav>
 
+    <!-- Announcement -->
+    <div class="announce-bar">
+        <p><strong>Balance Mat Pty Ltd</strong> is a Supporting Partner in the Care Economy CRC. We'll be attending the Annual Partner Conference in Melbourne on <strong>1 September 2026</strong>. We invite other CRC Partners to work with us beforehand to develop potential projects for CRC funding consideration.</p>
+        <a href="#conference">More info →</a>
+    </div>
+
     <!-- Hero -->
     <section class="hero">
         <div class="badge">CRC · Care Economy</div>
@@ -215,6 +230,25 @@
         <div class="hero-ctas">
             <a href="index.html#contact" class="btn">Get in Touch</a>
             <a href="mailto:info@balancemat.com.au?subject=CRC%20Care%20Economy%20Enquiry" class="btn btn-outline">Discuss a Research Partnership</a>
+        </div>
+    </section>
+
+    <!-- Conference -->
+    <section id="conference" class="how-section">
+        <h2 class="section-title">Care Economy CRC Partner Conference: Partnering for Impact</h2>
+        <p class="section-subtitle">A full-day partner-only event focused on building the next collaborative research projects for the Care Economy CRC.</p>
+
+        <div class="card" style="max-width:640px; margin:0 auto 2rem; text-align:center;">
+            <p style="font-weight:700; color:var(--dark); font-size:1.05rem; margin-bottom:0.5rem;">🗓️ Tuesday 1 September 2026 · 9:00am – 5:00pm</p>
+            <p style="color:var(--gray); margin-bottom:0;">📍 Conversation Quarter, State Library of Victoria</p>
+        </div>
+
+        <p class="section-subtitle" style="max-width:760px;">Attendees will explore shared challenges and opportunities across the care economy, connect with fellow partners, and contribute to the development of practical, industry-led research that delivers real impact.</p>
+
+        <p class="section-subtitle" style="max-width:760px; margin-bottom:2rem;">We are seeking to collaborate with other Care Economy CRC partners to improve falls prevention and resident mobility with Balance Mat.</p>
+
+        <div style="text-align:center;">
+            <a href="mailto:ian.bergman@balancemat.com.au?subject=Care%20Economy%20CRC%20Project%20Proposal" class="btn">Discuss a Project Proposal</a>
         </div>
     </section>
 
