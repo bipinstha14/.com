@@ -48,6 +48,26 @@
 
         /* Video Hero Area with Clean Light Background */
         .hero { background: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%); position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 1rem; overflow: hidden; }
+
+        .partner-callout {
+            position: absolute; left: 3%; top: 50%; transform: translateY(-50%);
+            width: 260px; z-index: 3; text-align: left;
+            background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+            border: 1px solid rgba(0,113,227,0.25); border-radius: 12px;
+            padding: 1.25rem 1.4rem; box-shadow: 0 10px 25px rgba(15,23,42,0.08);
+        }
+        .partner-callout .callout-tag {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            color: var(--primary); margin-bottom: 0.6rem;
+        }
+        .partner-callout p { color: #334155; font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.85rem; }
+        .partner-callout a { color: var(--primary); font-weight: 600; font-size: 0.85rem; text-decoration: none; }
+        .partner-callout a:hover { text-decoration: underline; }
+
+        @media (max-width: 1150px) {
+            .partner-callout { position: static; transform: none; width: 90%; max-width: 420px; margin: 2rem auto 0; }
+            .hero { flex-direction: column; height: auto; min-height: 100vh; padding: 7rem 1rem 2rem; }
+        }
         .hero-content { position: relative; z-index: 2; max-width: 800px; color: #0f172a; }
         .badge { background: rgba(0, 113, 227, 0.1); border: 1px solid var(--primary); color: var(--primary); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; display: inline-block; margin-bottom: 1.5rem; text-transform: uppercase; font-weight: 600; }
         .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: #0f172a; }
@@ -214,6 +234,15 @@ function switchTab(tab, evt) {
             </div>
 
             <a href="technology.html">Technology</a>
+            <a href="crc.html">CRC (Care Economy)</a>
+
+            <div class="dropdown">
+                <a href="#" onclick="toggleDropdown(event)" style="cursor: pointer;">Medical ▾</a>
+                <div class="dropdown-menu">
+                    <a href="diabetes.html">Diabetes</a>
+                </div>
+            </div>
+
             <a href="./global.html">Global</a>
             <a href="#research">Research</a>
             <a href="#technical">Technical</a>
@@ -243,6 +272,12 @@ function switchTab(tab, evt) {
             <h1>Next-Generation Postural Sway Metrics</h1>
             <p>Revolutionary fiber-optic technology measuring balance and falls risk with automated, objective data in under 20 seconds.</p>
             <a href="#solutions" class="btn">Explore Dynamic Solutions</a>
+        </div>
+
+        <div class="partner-callout">
+            <div class="callout-tag">Partnership Opportunity</div>
+            <p>We are seeking commercial partners to help us commercialise our Balance Mat as a screening tool for type 2 diabetics.</p>
+            <a href="#contact">Get in touch →</a>
         </div>
     </section>
 
@@ -549,6 +584,8 @@ counters.forEach(counter => {
             <input type="password" id="vdrPasscode" placeholder="Enter Access Code" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 1rem; font-size: 1rem; text-align: center; color: #0f172a; background: #fff;">
             <button onclick="checkAccess()" class="btn">Enter</button>
 <button onclick="closeVdrModal()" class="btn" style="background:#64748b;">Close</button>
-           
+        </div>
+    </div>
 
-            
+</body>
+</html>
