@@ -1,308 +1,992 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diabetes Screening | Balance Mat</title>
-    <style>
-        :root {
-            --primary: #0071e3;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --gray: #64748b;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--light); color: var(--dark); overflow-x: hidden; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Navigation */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 5%; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { text-decoration: none; display: flex; align-items: center; }
-        .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-        .logo-title { font-size: 2rem; font-weight: 700; color: white; letter-spacing: -0.5px; }
-        .logo-tagline { font-size: 0.75rem; font-weight: 600; color: #f5a623; letter-spacing: 2px; margin-top: 4px; text-transform: uppercase; }
-        .nav-links { display: flex; align-items: center; list-style: none; }
-        .nav-links a { color: var(--light); text-decoration: none; margin-left: 2rem; font-size: 0.9rem; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
+<title>Diabetes Screening Research | Balance Mat</title>
 
-        .dropdown { position: relative; display: inline-block; margin-left: 2rem; }
-        .dropdown > a { margin-left: 0; }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background: #0f172a;
-            min-width: 250px;
-            box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.15);
-            top: 100%;
-            left: 0;
-            padding: 0.75rem 0;
-            z-index: 2000;
-            margin-top: 0.5rem;
-        }
-        .dropdown-menu a { display: block; padding: 0.6rem 1.2rem; margin: 0; font-size: 0.85rem; color: #cbd5e1; text-decoration: none; transition: background 0.2s, color 0.2s; cursor: pointer; }
-        .dropdown-menu a:hover { background: rgba(0, 113, 227, 0.15); color: #fff; }
-        .dropdown-menu a.current { color: var(--primary); font-weight: 600; }
+<style>
 
-        /* Hero */
-        .hero { background: linear-gradient(180deg, #ffffff 0%, #eef4fb 100%); padding: 10rem 5% 5rem; text-align: center; }
-        .badge { background: rgba(0, 113, 227, 0.1); border: 1px solid var(--primary); color: var(--primary); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; display: inline-block; margin-bottom: 1.5rem; text-transform: uppercase; font-weight: 600; }
-        .hero h1 { font-size: 2.75rem; font-weight: 800; line-height: 1.15; margin-bottom: 1.25rem; max-width: 850px; margin-left: auto; margin-right: auto; }
-        .hero p { font-size: 1.15rem; color: #475569; margin-bottom: 2rem; max-width: 650px; margin-left: auto; margin-right: auto; }
-        .btn { background: var(--primary); color: white; padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; transition: transform 0.2s, background 0.2s; border: none; cursor: pointer; font-size: 0.95rem; }
-        .btn:hover { background: #0077ed; transform: translateY(-2px); }
-        .btn-outline { background: transparent; color: var(--dark); border: 1.5px solid #cbd5e1; }
-        .btn-outline:hover { background: #f1f5f9; }
-        .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+:root {
+    --primary:#0071e3;
+    --dark:#0f172a;
+    --light:#f8fafc;
+    --gray:#64748b;
+}
 
-        /* Section shared */
-        section { padding: 5rem 5%; }
-        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; text-align: center; }
-        .section-subtitle { color: var(--gray); margin-bottom: 3rem; font-size: 1.05rem; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto; }
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
 
-        /* Why section - checklist */
-        .why-section { background: #ffffff; }
-        .checklist { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
-        .checklist div { background: var(--light); border-radius: 10px; padding: 1.1rem 1.4rem; font-weight: 600; color: #1e293b; font-size: 0.95rem; }
+body {
+    background:var(--light);
+    color:var(--dark);
+}
 
-        /* How it works */
-        .how-section { background: #f1f5f9; }
-        .steps { display: flex; justify-content: center; gap: 2rem; max-width: 950px; margin: 0 auto; flex-wrap: wrap; }
-        .step { background: white; border-radius: 14px; padding: 2rem; text-align: center; flex: 1; min-width: 220px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .step-num { width: 42px; height: 42px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 1rem; }
-        .step h4 { margin-bottom: 0.6rem; }
-        .step p { color: var(--gray); font-size: 0.9rem; }
-        .step-arrow { display: flex; align-items: center; color: #94a3b8; font-size: 1.5rem; }
 
-        /* Benefit cards */
-        .benefits-section { background: #ffffff; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
-        .card { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08); border: 1px solid #f1f5f9; }
-        .card .emoji { font-size: 1.75rem; margin-bottom: 0.75rem; }
-        .card h4 { font-size: 1.2rem; margin-bottom: 0.9rem; }
-        .card ul { list-style: none; }
-        .card ul li { margin-bottom: 0.5rem; position: relative; padding-left: 1.4rem; color: var(--gray); font-size: 0.92rem; }
-        .card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
+/* Navigation */
 
-        /* Data & reporting */
-        .data-section { background: var(--dark); color: white; }
-        .data-section .section-title, .data-section .section-subtitle { color: white; }
-        .data-section .section-subtitle { color: #cbd5e1; }
-        .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
-        .data-card { background: #1e293b; border-radius: 14px; padding: 2rem; }
-        .data-card h4 { margin-bottom: 1rem; color: #60a5fa; }
-        .data-card ul { list-style: none; margin-bottom: 0; }
-        .data-card ul li { margin-bottom: 0.5rem; position: relative; padding-left: 1.4rem; color: #cbd5e1; font-size: 0.9rem; }
-        .data-card ul li::before { content: "▸"; position: absolute; left: 0; color: #60a5fa; }
-        table.dash { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.85rem; }
-        table.dash th, table.dash td { text-align: left; padding: 0.55rem 0.6rem; border-bottom: 1px solid #334155; }
-        table.dash th { color: #94a3b8; font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.5px; }
-        .tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
-        .tag.up { background: rgba(34,197,94,0.15); color: #4ade80; }
-        .tag.down { background: rgba(239,68,68,0.15); color: #f87171; }
+nav {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:.6rem 5%;
+    background:rgba(15,23,42,.95);
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:1000;
+}
 
-        /* Use case */
-        .usecase-section { background: #f1f5f9; }
-        .usecase-grid { max-width: 950px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .usecase-card { background: white; border-radius: 14px; padding: 2rem; }
-        .usecase-card.before { border-left: 4px solid #94a3b8; }
-        .usecase-card.after { border-left: 4px solid var(--primary); }
-        .usecase-card h5 { text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: var(--gray); margin-bottom: 0.75rem; }
-        .usecase-card p { color: #334155; font-size: 0.95rem; line-height: 1.6; font-style: italic; }
 
-        /* Trust */
-        .trust-section { background: #ffffff; text-align: center; }
-        .trust-list { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem 2.5rem; max-width: 800px; margin: 2rem auto 0; }
-        .trust-list div { font-weight: 600; color: #1e293b; font-size: 0.95rem; }
-        .trust-list div span { color: var(--primary); margin-right: 0.4rem; }
+.logo {
+    text-decoration:none;
+}
 
-        .disclaimer { max-width: 750px; margin: 2rem auto 0; background: #fff7ed; border: 1px solid #fdba74; border-radius: 10px; padding: 1rem 1.4rem; color: #9a5b13; font-size: 0.88rem; text-align: left; }
-        .partner-box { max-width: 600px; margin: 2.5rem auto 0; background: #eff6ff; border: 1px solid #93c5fd; border-radius: 12px; padding: 1.5rem 1.75rem; text-align: left; }
-        .partner-box .callout-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--primary); margin-bottom: 0.6rem; }
-        .partner-box p { color: #1e3a5f; font-size: 0.95rem; line-height: 1.5; margin-bottom: 0.9rem; }
-        .partner-box a { color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+.logo-title {
+    color:white;
+    font-size:2rem;
+    font-weight:700;
+}
 
-        /* CTA footer */
-        .cta-footer { background: var(--dark); color: white; text-align: center; padding: 5rem 5%; }
-        .cta-footer h2 { font-size: 2rem; margin-bottom: 1rem; }
-        .cta-footer p { color: #cbd5e1; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .footer-copy { text-align: center; padding: 1.5rem 5%; background: var(--dark); color: #64748b; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.08); }
+.logo-tagline {
+    color:#f5a623;
+    font-size:.7rem;
+    letter-spacing:2px;
+}
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .nav-links { display: none; }
-            .step-arrow { display: none; }
-        }
-    </style>
+
+.nav-links {
+    display:flex;
+    list-style:none;
+    align-items:center;
+}
+
+
+.nav-links a {
+    color:white;
+    text-decoration:none;
+    margin-left:2rem;
+    font-size:.9rem;
+}
+
+
+.nav-links a:hover {
+    color:var(--primary);
+}
+
+
+/* Hero */
+
+.hero {
+
+    padding:11rem 5% 6rem;
+    text-align:center;
+    background:
+    linear-gradient(180deg,#ffffff,#eef4fb);
+
+}
+
+
+.badge {
+
+    display:inline-block;
+    padding:.5rem 1rem;
+    border-radius:50px;
+    border:1px solid var(--primary);
+    color:var(--primary);
+    background:#eff6ff;
+    font-weight:600;
+    font-size:.85rem;
+
+}
+
+
+.hero h1 {
+
+    max-width:900px;
+    margin:2rem auto 1rem;
+    font-size:3rem;
+    line-height:1.15;
+
+}
+
+
+.hero p {
+
+    max-width:750px;
+    margin:auto;
+    color:#475569;
+    font-size:1.2rem;
+    line-height:1.6;
+
+}
+
+
+.buttons {
+
+    margin-top:2rem;
+
+}
+
+
+.btn {
+
+    display:inline-block;
+    padding:.9rem 1.8rem;
+    background:var(--primary);
+    color:white;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+    margin:.5rem;
+
+}
+
+
+.btn-outline {
+
+    background:white;
+    color:var(--dark);
+    border:1px solid #cbd5e1;
+
+}
+
+
+
+/* Sections */
+
+
+section {
+
+    padding:5rem 5%;
+
+}
+
+
+.title {
+
+    text-align:center;
+    font-size:2.2rem;
+    margin-bottom:1rem;
+
+}
+
+
+.subtitle {
+
+    text-align:center;
+    max-width:750px;
+    margin:auto;
+    color:var(--gray);
+    line-height:1.6;
+
+}
+
+
+
+/* Research Timeline */
+
+
+.research {
+
+    background:white;
+
+}
+
+
+.timeline {
+
+    max-width:850px;
+    margin:3rem auto;
+
+}
+
+
+.timeline div {
+
+    background:#f8fafc;
+    padding:1.5rem;
+    margin-bottom:1rem;
+    border-left:5px solid var(--primary);
+    border-radius:10px;
+    font-size:1.1rem;
+    font-weight:600;
+
+}
+
+
+
+</style>
+
 </head>
+
+
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="index.html#home" class="logo">
-            <div class="logo-text">
-                <div class="logo-title">Balance Mat</div>
-                <div class="logo-tagline">LIVE WELL LONGER</div>
-            </div>
-        </a>
-        <div class="nav-links">
-            <a href="index.html#home">Home</a>
 
-            <div class="dropdown">
-                <a href="#" onclick="toggleDropdown(event)" style="cursor:pointer;">Solutions ▾</a>
-                <div class="dropdown-menu">
-                    <a href="aged-care.html">Aged Care Facilities</a>
-                    <a href="sports-concussion.html">Sports & Concussion</a>
-                    <a href="allied-health.html">Allied Health Practitioners</a>
-                </div>
-            </div>
+<!-- Navigation -->
 
-            <a href="technology.html">Technology</a>
-            <a href="crc.html">CRC (Care Economy)</a>
+<nav>
 
-            <div class="dropdown">
-                <a href="#" onclick="toggleDropdown(event)">Medical ▾</a>
-                <div class="dropdown-menu">
-                    <a href="diabetes.html" class="current">Diabetes</a>
-                </div>
-            </div>
+<a href="index.html" class="logo">
 
-            <a href="global.html">Global</a>
-            <a href="index.html#research">Research</a>
-            <a href="index.html#technical">Technical</a>
+<div class="logo-title">
+Balance Mat
+</div>
 
-            <div class="dropdown">
-                <a href="#" onclick="toggleDropdown(event)" style="cursor:pointer;">Data Room ▾</a>
-                <div class="dropdown-menu">
-                    <a href="#" onclick="openVdrModal(); return false;">🔒 Virtual Data Room</a>
-                </div>
-            </div>
+<div class="logo-tagline">
+LIVE WELL LONGER
+</div>
 
-            <a href="index.html#contact">Contact</a>
-        </div>
-    </nav>
+</a>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="badge">Medical · Diabetes</div>
-        <h1>Exploring Balance Mat as a Screening Tool for Type 2 Diabetes</h1>
-        <p>Balance and gait changes can be an early sign of diabetic peripheral neuropathy — nerve damage affecting the feet and legs that is common in people with type 2 diabetes. We're exploring how Balance Mat's objective, non-invasive sway data could support earlier screening.</p>
-        <div class="hero-ctas">
-            <a href="index.html#contact" class="btn">Discuss This Application</a>
-            <a href="mailto:info@balancemat.com.au?subject=Diabetes%20Screening%20Partnership" class="btn btn-outline">Partner With Us</a>
-        </div>
-    </section>
 
-    <!-- Why -->
-    <section class="why-section">
-        <h2 class="section-title">Why Balance and Diabetes Are Connected</h2>
-        <p class="section-subtitle">Diabetic peripheral neuropathy can gradually reduce sensation and stability in the feet and legs, which often shows up first as subtle changes in balance — sometimes before other symptoms are noticed.</p>
-        <div class="checklist">
-            <div>✅ Non-invasive, quick screening (under 20 seconds)</div>
-            <div>✅ Objective postural sway data</div>
-            <div>✅ Potential for earlier identification of balance changes</div>
-            <div>✅ Repeatable testing to track changes over time</div>
-        </div>
-    </section>
+<div class="nav-links">
 
-    <!-- Applications -->
-    <section class="benefits-section">
-        <h2 class="section-title">Potential Applications</h2>
-        <p class="section-subtitle">This is an emerging area we're actively developing — here's where we see the opportunity.</p>
-        <div class="grid">
-            <div class="card">
-                <div class="emoji">🩺</div>
-                <h4>GPs & Endocrinologists</h4>
-                <ul>
-                    <li>Objective balance data alongside routine diabetes checks</li>
-                    <li>Support for referral decisions</li>
-                    <li>Simple in-clinic screening tool</li>
-                </ul>
-            </div>
-            <div class="card">
-                <div class="emoji">🦶</div>
-                <h4>Podiatrists</h4>
-                <ul>
-                    <li>Balance data alongside foot health assessments</li>
-                    <li>Monitoring neuropathy-related changes over time</li>
-                    <li>Early flagging for further clinical review</li>
-                </ul>
-            </div>
-            <div class="card">
-                <div class="emoji">🔬</div>
-                <h4>Researchers</h4>
-                <ul>
-                    <li>Data to help validate balance as a screening indicator</li>
-                    <li>Collaboration on clinical studies</li>
-                    <li>Contributing to diabetes-related falls prevention research</li>
-                </ul>
-            </div>
-        </div>
+<a href="index.html">Home</a>
 
-        <div class="partner-box">
-            <div class="callout-tag">Partnership Opportunity</div>
-            <p>We are seeking commercial partners to help us commercialise our Balance Mat as a screening tool for type 2 diabetics.</p>
-            <a href="index.html#contact">Get in touch →</a>
-        </div>
+<a href="technology.html">Technology</a>
 
-        <div class="disclaimer">
-            ⚠️ This application is under exploration and development. Balance Mat is not currently validated or approved as a diagnostic tool for diabetes or diabetic neuropathy, and should not be used as a substitute for professional medical evaluation.
-        </div>
-    </section>
+<a href="crc.html">CRC (Care Economy)</a>
 
-    <!-- Trust -->
-    <section class="trust-section">
-        <h2 class="section-title">A New Screening Frontier</h2>
-        <div class="trust-list">
-            <div><span>✔</span>Non-invasive, quick assessment</div>
-            <div><span>✔</span>Objective, repeatable data</div>
-            <div><span>✔</span>TGA approved device</div>
-            <div><span>✔</span>Australian designed and made</div>
-        </div>
-    </section>
+<a href="diabetes.html">
+Diabetes Research
+</a>
 
-    <!-- CTA -->
-    <div class="cta-footer">
-        <h2>Help Us Bring This Screening Tool to Market</h2>
-        <p>We're looking for commercial and clinical partners to help develop and validate Balance Mat as a screening tool for type 2 diabetes.</p>
-        <a href="index.html#contact" class="btn">Get in Touch</a>
-    </div>
-    <div class="footer-copy">© 2026 Balance Mat Pty Ltd. All Rights Reserved. Patented System.</div>
+<a href="global.html">Global</a>
 
-    <!-- VDR Modal -->
-    <div id="vdrModal" style="display:none; position:fixed; z-index:3000; left:0; top:0; width:100%; height:100%; background-color:rgba(15,23,42,0.85); backdrop-filter:blur(5px); justify-content:center; align-items:center;">
-        <div style="background:white; color:#0f172a; padding:2.5rem; border-radius:16px; width:90%; max-width:450px; text-align:center; box-shadow:0 20px 25px -5px rgba(0,0,0,0.2);">
-            <h3 style="font-size:1.5rem; margin-bottom:0.5rem; font-weight:700;">Secure Corporate Directory</h3>
-            <p style="color:#64748b; font-size:0.9rem; margin-bottom:1.5rem;">All Balance Mat user manuals, validation data, and corporate files are restricted. Enter your access code to view files.</p>
-            <input type="password" id="vdrPasscode" placeholder="Enter Access Code" style="width:100%; padding:0.75rem; border:1px solid #cbd5e1; border-radius:8px; margin-bottom:1rem; font-size:1rem; text-align:center; color:#0f172a; background:#fff;">
-            <button onclick="checkAccess()" class="btn">Enter</button>
-            <button onclick="closeVdrModal()" class="btn" style="background:#64748b;">Close</button>
-        </div>
-    </div>
+<a href="index.html#contact">
+Contact
+</a>
 
-    <script>
-        function toggleDropdown(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const menu = e.currentTarget.nextElementSibling;
-            document.querySelectorAll(".dropdown-menu").forEach(m => { if (m !== menu) m.style.display = "none"; });
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
-        }
-        document.addEventListener("click", function () {
-            document.querySelectorAll(".dropdown-menu").forEach(m => m.style.display = "none");
-        });
 
-        function openVdrModal() { document.getElementById("vdrModal").style.display = "flex"; }
-        function closeVdrModal() { document.getElementById("vdrModal").style.display = "none"; }
-        function checkAccess() {
-            const code = document.getElementById("vdrPasscode").value;
-            if (code === "1234") {
-                window.location.href = "vdr.html";
-            } else {
-                alert("Email Ian.Bergman@balancemat.com.au for access code");
-            }
-        }
-    </script>
+</div>
+
+
+</nav>
+
+
+
+<!-- HERO -->
+
+
+<section class="hero">
+
+
+<div class="badge">
+Medical Research | Type 2 Diabetes Screening
+</div>
+
+
+<h1>
+Developing the Balance Mat as a Screening Tool for Type 2 Diabetes
+</h1>
+
+
+<p>
+
+A research program investigating whether postural sway measurements captured 
+by Balance Mat can identify patterns associated with Type 2 diabetes.
+
+</p>
+
+
+<div class="buttons">
+
+<a href="#research" class="btn">
+View Research Findings
+</a>
+
+
+<a href="mailto:greg@vestech.com.au" class="btn btn-outline">
+Partner With Us
+</a>
+
+</div>
+
+
+</section>
+
+
+
+
+<!-- Research Overview -->
+
+
+<section class="research" id="research">
+
+
+<h2 class="title">
+2025/26 Research Program
+</h2>
+
+
+<p class="subtitle">
+
+A major research program conducted across two medical centres in NSW examined 
+postural sway measurements from patients using Balance Mat technology.
+
+</p>
+
+
+
+<div class="timeline">
+
+
+<div>
+🧪 210 patients assessed across two medical centres in NSW
+</div>
+
+
+<div>
+📊 Postural sway metrics measured and analysed
+</div>
+
+
+<div>
+🔍 15 patients demonstrated significantly different sway characteristics
+</div>
+
+
+<div>
+🩺 The common marker among these 15 patients was Type 2 diabetes
+</div>
+
+
+</div>
+
+
+</section>
+
+    
+<!-- Key Findings -->
+
+<section style="background:#f1f5f9;">
+
+
+<h2 class="title">
+Research Findings
+</h2>
+
+
+<p class="subtitle">
+
+The research identified a potential relationship between measured postural sway 
+characteristics and Type 2 diabetes status. Further clinical validation is 
+being undertaken.
+
+</p>
+
+
+
+<div style="
+max-width:1000px;
+margin:3rem auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:2rem;
+">
+
+
+<div style="
+background:white;
+padding:2rem;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+">
+
+<h3 style="
+font-size:3rem;
+color:#0071e3;
+">
+210
+</h3>
+
+<p style="font-weight:600;">
+Patients Assessed
+</p>
+
+<p style="color:#64748b;margin-top:1rem;">
+Participants included in the NSW research program.
+</p>
+
+</div>
+
+
+
+<div style="
+background:white;
+padding:2rem;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+">
+
+<h3 style="
+font-size:3rem;
+color:#0071e3;
+">
+15
+</h3>
+
+<p style="font-weight:600;">
+Patients Identified
+</p>
+
+<p style="color:#64748b;margin-top:1rem;">
+Patients with significantly different postural sway metrics.
+</p>
+
+</div>
+
+
+
+<div style="
+background:white;
+padding:2rem;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+">
+
+<h3 style="
+font-size:3rem;
+color:#0071e3;
+">
+100%
+</h3>
+
+<p style="font-weight:600;">
+Common Marker
+</p>
+
+<p style="color:#64748b;margin-top:1rem;">
+All identified patients had Type 2 diabetes.
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- Scientific Presentation -->
+
+
+<section style="background:#0f172a;color:white;">
+
+
+<h2 class="title" style="color:white;">
+Scientific Presentation
+</h2>
+
+
+<p class="subtitle" style="color:#cbd5e1;">
+
+Research findings from the Balance Mat diabetes screening program will be 
+presented at an international diabetes conference.
+
+</p>
+
+
+
+<div style="
+max-width:900px;
+margin:3rem auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:2rem;
+">
+
+
+<div style="
+background:#1e293b;
+padding:2rem;
+border-radius:15px;
+">
+
+
+<h3 style="
+color:#60a5fa;
+margin-bottom:1rem;
+">
+Conference
+</h3>
+
+
+<p style="line-height:1.8;color:#cbd5e1;">
+
+International Diabetes Federation Western Pacific & 
+Australian Diabetes Congress & Metabolic Diseases Conference
+
+<br><br>
+
+<strong style="color:white;">
+18–21 August 2026
+</strong>
+
+<br><br>
+
+Melbourne Convention and Exhibition Centre
+
+</p>
+
+
+</div>
+
+
+
+
+<div style="
+background:#1e293b;
+padding:2rem;
+border-radius:15px;
+">
+
+
+<h3 style="
+color:#60a5fa;
+margin-bottom:1rem;
+">
+Research Presenter
+</h3>
+
+
+<p style="line-height:1.8;color:#cbd5e1;">
+
+
+<strong style="color:white;">
+Dr Tshepo Rasekaba
+</strong>
+
+
+<br>
+
+Senior Research Fellow and Clinician
+
+<br>
+
+La Trobe University
+
+
+<br><br>
+
+Poster paper presentation
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+<!-- Commercialisation Opportunity -->
+
+
+<section style="background:white;">
+
+
+<h2 class="title">
+Commercialisation Opportunity
+</h2>
+
+
+<p class="subtitle">
+
+Balance Mat Pty Ltd is seeking commercial partners to support the next stage 
+of development and commercialisation of Balance Mat as a screening tool for 
+Type 2 diabetes.
+
+</p>
+
+
+
+
+<div style="
+max-width:750px;
+margin:3rem auto;
+background:#eff6ff;
+border:1px solid #93c5fd;
+padding:2.5rem;
+border-radius:15px;
+">
+
+
+<h3 style="
+color:#0071e3;
+margin-bottom:1rem;
+">
+
+Partner With Us
+
+</h3>
+
+
+<p style="
+line-height:1.7;
+color:#1e3a5f;
+">
+
+
+The commercialisation process for this technology is being managed by 
+<strong>
+Vestech Medical Pty Ltd.
+</strong>
+
+
+<br><br>
+
+
+Organisations interested in supporting the development and commercialisation 
+of Balance Mat as a diabetes screening technology are invited to make contact.
+
+
+</p>
+
+
+
+<br>
+
+
+<p style="
+font-size:1.1rem;
+">
+
+
+<strong>
+Dr Greg Roger
+</strong>
+
+
+<br>
+
+
+<a href="mailto:greg@vestech.com.au"
+style="
+color:#0071e3;
+font-weight:600;
+text-decoration:none;
+">
+
+greg@vestech.com.au
+
+</a>
+
+
+</p>
+
+
+</div>
+
+
+
+</section>
+
+
+<!-- Disclaimer -->
+
+
+<section style="
+background:#fff7ed;
+padding:2rem 5%;
+">
+
+
+<div style="
+max-width:900px;
+margin:auto;
+color:#9a5b13;
+line-height:1.6;
+">
+
+
+<strong>
+Important Notice:
+</strong>
+
+
+Balance Mat is currently being developed as a potential screening technology 
+for Type 2 diabetes. Further clinical validation and regulatory assessment 
+will be required before any diagnostic claims can be made.
+
+
+</div>
+
+
+</section>
+
+    
+<!-- Call To Action -->
+
+
+<section style="
+background:#0f172a;
+color:white;
+text-align:center;
+padding:5rem 5%;
+">
+
+
+<h2 style="
+font-size:2.2rem;
+margin-bottom:1rem;
+">
+
+Advancing the Future of Diabetes Screening
+
+</h2>
+
+
+<p style="
+max-width:650px;
+margin:auto;
+color:#cbd5e1;
+font-size:1.1rem;
+line-height:1.6;
+">
+
+We welcome conversations with commercial, clinical, and research partners 
+interested in supporting the development of Balance Mat technology.
+
+</p>
+
+
+<br>
+
+
+<a href="mailto:greg@vestech.com.au"
+style="
+display:inline-block;
+background:#0071e3;
+color:white;
+padding:1rem 2rem;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+">
+
+Contact Vestech Medical
+
+</a>
+
+
+</section>
+
+
+
+
+
+<!-- Footer -->
+
+
+<footer style="
+background:#0f172a;
+border-top:1px solid rgba(255,255,255,.1);
+padding:1.5rem 5%;
+text-align:center;
+color:#64748b;
+font-size:.85rem;
+">
+
+
+© 2026 Balance Mat Pty Ltd. All Rights Reserved. Patented System.
+
+
+</footer>
+
+
+
+
+
+<!-- VDR Modal -->
+
+
+<div id="vdrModal" 
+style="
+display:none;
+position:fixed;
+z-index:3000;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(15,23,42,.85);
+justify-content:center;
+align-items:center;
+">
+
+
+<div style="
+background:white;
+color:#0f172a;
+padding:2.5rem;
+border-radius:16px;
+width:90%;
+max-width:450px;
+text-align:center;
+">
+
+
+<h3 style="
+font-size:1.5rem;
+margin-bottom:.8rem;
+">
+
+Secure Corporate Directory
+
+</h3>
+
+
+<p style="
+color:#64748b;
+font-size:.9rem;
+margin-bottom:1.5rem;
+">
+
+Balance Mat corporate documents, validation data, and user manuals are 
+restricted. Enter your access code to continue.
+
+</p>
+
+
+
+<input 
+type="password"
+id="vdrPasscode"
+placeholder="Enter Access Code"
+
+style="
+width:100%;
+padding:.8rem;
+border:1px solid #cbd5e1;
+border-radius:8px;
+margin-bottom:1rem;
+text-align:center;
+font-size:1rem;
+">
+
+
+
+<br>
+
+
+<button 
+onclick="checkAccess()"
+
+style="
+background:#0071e3;
+color:white;
+border:none;
+padding:.8rem 2rem;
+border-radius:8px;
+font-weight:600;
+cursor:pointer;
+">
+
+Enter
+
+</button>
+
+
+
+<button 
+onclick="closeVdrModal()"
+
+style="
+background:#64748b;
+color:white;
+border:none;
+padding:.8rem 2rem;
+border-radius:8px;
+font-weight:600;
+cursor:pointer;
+margin-left:.5rem;
+">
+
+Close
+
+</button>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<script>
+
+
+function openVdrModal(){
+
+document.getElementById("vdrModal").style.display="flex";
+
+}
+
+
+
+function closeVdrModal(){
+
+document.getElementById("vdrModal").style.display="none";
+
+}
+
+
+
+function checkAccess(){
+
+let code=document.getElementById("vdrPasscode").value;
+
+
+if(code==="1234"){
+
+window.location.href="vdr.html";
+
+}
+
+else{
+
+alert("Email Ian.Bergman@balancemat.com.au for access code");
+
+}
+
+
+}
+
+
+
+</script>
+
+
+
 </body>
+
 </html>
