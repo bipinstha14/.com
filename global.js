@@ -1,5 +1,5 @@
 var map = L.map('map', {
-    minZoom: 2,
+    minZoom: 8,
     maxZoom: 18,
     maxBounds: [
         [-90, -180],
