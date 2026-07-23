@@ -68,6 +68,28 @@
         color: rgba(255,255,255,0.85);
     }
     .category-tag::before { content: ""; width: 26px; height: 2px; background: rgba(255,255,255,0.6); display: inline-block; }
+    .partner-logo-badge {
+        display: inline-block; background: #fff; border-radius: 12px; padding: 0.9rem 1.5rem;
+        margin-bottom: 1.5rem; box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+    }
+    .partner-logo-badge img { height: 56px; width: auto; display: block; }
+
+    .paper-card {
+        background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+        border-radius: 8px; padding: 1.5rem 1.75rem; margin: 1.25rem 0 1.5rem;
+    }
+    .paper-card .paper-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; color: var(--ink); margin-bottom: 0.6rem; }
+    .paper-card .paper-meta { font-size: 0.88rem; color: var(--ink-soft); margin-bottom: 0.3rem; }
+    .paper-card .paper-link { display: inline-block; margin-top: 0.8rem; font-size: 0.88rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+    .paper-card .paper-link:hover { text-decoration: underline; }
+
+    .photo-section { margin-top: 1rem; }
+    .photo-frame {
+        border-radius: 10px; overflow: hidden; border: 1px solid var(--border);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .photo-frame img { width: 100%; display: block; }
+    .photo-caption { color: var(--ink-soft); font-size: 0.85rem; font-style: italic; margin-top: 0.75rem; }
     .profile-header h1 { font-size: 2.6rem; margin-bottom: 1rem; }
     .profile-header p.tagline { font-size: 1.1rem; color: rgba(255,255,255,0.88); max-width: 640px; }
 
@@ -188,9 +210,10 @@
 <!-- Profile Header -->
 <div class="profile-header">
     <div class="profile-header-inner">
-        <div class="category-tag">Our Partners · Academic Research</div>
+        <div class="partner-logo-badge"><img src="university-of-canberra-logo.jpg" alt="University of Canberra logo"></div>
+        <div class="category-tag">Our Partners · Research & Academic Collaboration</div>
         <h1>University of Canberra</h1>
-        <p class="tagline">An academic research partner supporting the evidence base behind Balance Mat's technology.</p>
+        <p class="tagline">A research partner supporting the scientific validation, evidence development, and advancement of Balance Mat technology.</p>
     </div>
 </div>
 
@@ -199,24 +222,70 @@
     <div class="profile-main">
         <div class="section-block">
             <div class="rule"></div>
-            <h2>About the University of Canberra</h2>
-            <p><em>Partnership details to be added.</em> The University of Canberra works alongside Balance Mat as part of our academic research network — this section will outline the faculty, researchers, and focus areas involved.</p>
+            <h2>About the Partnership</h2>
+            <p>In July 2021, Balance Mat Pty Ltd and the University of Canberra established a Collaborative Research Agreement to undertake a major research program focused on the development, evaluation, and validation of Balance Mat technology.</p>
+            <p>Through this collaboration, researchers from the University of Canberra have contributed to advancing the scientific understanding of balance measurement and postural sway assessment through a series of research activities and publications.</p>
+            <p>The partnership has produced multiple scientific outputs between 2022 and 2025, strengthening the evidence base behind Balance Mat and supporting its development as an objective, portable balance assessment technology.</p>
+        </div>
+
+        <div class="section-block">
+            <div class="rule"></div>
+            <h2>Research Milestone: Technical and Clinical Validation</h2>
+            <p>A significant milestone in the collaboration was the publication of a peer-reviewed study evaluating the technical and clinical performance of Balance Mat in older adults, comparing postural sway measurements against established balance assessment methods.</p>
+
+            <div class="paper-card">
+                <div class="paper-title">"Technical and Clinical Validation of a Portable Optical Fibre Balance Mat for Quantifying Postural Sway in Older Adults"</div>
+                <div class="paper-meta"><strong>Authors:</strong> Abishek Shrestha, Damith Herath, Angie Fearon and Maryam Ghahramani</div>
+                <div class="paper-meta"><strong>Published in:</strong> Sensors (2026)</div>
+                <a class="paper-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13364329/pdf/sensors-26-04021.pdf" target="_blank" rel="noopener">Download the research paper (PDF) →</a>
+            </div>
+
+            <p>The research demonstrated the capability of Balance Mat to objectively quantify postural sway using a portable optical fibre-based system, supporting its potential application as an accessible balance assessment solution for healthcare and research environments.</p>
+        </div>
+
+        <div class="section-block photo-section">
+            <div class="rule"></div>
+            <h2>Research Collaboration</h2>
+            <div class="photo-frame">
+                <img src="university-of-canberra-photo.png" alt="Ian Bergman and University of Canberra researchers with the Robotic Hexapod Platform and Balance Mat">
+            </div>
+            <p class="photo-caption">Ian Bergman with University of Canberra researchers in the robotics lab during the collaborative research program.</p>
         </div>
 
         <div class="section-block">
             <div class="rule"></div>
             <h2>Working Together</h2>
-            <p>We're building out the specifics of how Balance Mat and the University of Canberra collaborate — whether that's clinical trials, student research projects, or published studies.</p>
+            <p>The collaboration between Balance Mat and the University of Canberra combines industry innovation with academic research expertise to generate scientific evidence and support the development of next-generation balance assessment technology.</p>
+            <p>Through this partnership, researchers have investigated the reliability, validity, and clinical applications of Balance Mat, helping establish a stronger foundation for future healthcare adoption and research applications.</p>
+        </div>
+
+        <div class="section-block">
+            <div class="rule"></div>
+            <h2>Partnership Focus Area</h2>
             <ul>
-                <li>Partnership focus area — to be confirmed</li>
-                <li>Joint initiatives — to be confirmed</li>
-                <li>Shared outcomes — to be confirmed</li>
+                <li>Scientific research and validation</li>
+                <li>Clinical evidence generation</li>
+                <li>Postural sway and balance assessment research</li>
+                <li>Academic collaboration</li>
+                <li>Translation of research into healthcare applications</li>
+            </ul>
+        </div>
+
+        <div class="section-block">
+            <div class="rule"></div>
+            <h2>Joint Research Outcomes</h2>
+            <ul>
+                <li>Development of evidence supporting Balance Mat technology</li>
+                <li>Multiple scientific publications from 2022 onwards</li>
+                <li>Technical and clinical validation of Balance Mat performance</li>
+                <li>Advancement of portable and objective balance measurement methods</li>
+                <li>Contribution to improved understanding of human balance and mobility</li>
             </ul>
         </div>
 
         <div class="quote-block">
-            "Quote from the University of Canberra about the partnership will go here."
-            <cite>— Placeholder, pending final content</cite>
+            "The Balance Mat will fundamentally change the way we measure and understand human balance."
+            <cite>— Professor Damith Herath, University of Canberra · LinkedIn Post, July 2026</cite>
         </div>
     </div>
 
@@ -224,19 +293,19 @@
         <h3>Quick Facts</h3>
         <div class="fact-row">
             <div class="fact-label">Category</div>
-            <div class="fact-value">Academic Research Partner</div>
+            <div class="fact-value">Research & Academic Partner</div>
         </div>
         <div class="fact-row">
             <div class="fact-label">Focus Area</div>
-            <div class="fact-value">To be confirmed</div>
+            <div class="fact-value">Clinical research, technical validation, balance science, and evidence development</div>
         </div>
         <div class="fact-row">
             <div class="fact-label">Partnership Since</div>
-            <div class="fact-value">To be confirmed</div>
+            <div class="fact-value">July 2021</div>
         </div>
         <div class="fact-row">
             <div class="fact-label">Location</div>
-            <div class="fact-value">To be confirmed</div>
+            <div class="fact-value">Canberra, Australia</div>
         </div>
     </aside>
 </div>
